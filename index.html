@@ -6,13 +6,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
+* {
+	box-sizing: border-box;
+}
+
 html, body {
 	font-family: 'Alegreya', serif;
+	margin: 0 auto;
 }
+
+.wrapper {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	overflow: scroll;
+}
+
 .box {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	justify-content: center;
+	width: 100%;
+	max-width: 480px;
+	margin: 0 auto;
+	padding: 15px;
 }
 
 .item {
@@ -23,28 +40,28 @@ html, body {
 
 </head>
 <body>
-
-<div class="box">
-	<div class="item"> 
-		<h1>Johan Litsfeldt</h1>
-		<i>Software Engineer</i><br/>
-		<b>Contact</b>: <a href="mailto:johlits@gmail.com">johlits@gmail.com</a>
+	<div class="wrapper">
+		<div class="box">
+			<div class="item"> 
+				<h1>Johan Litsfeldt</h1>
+				<i>Software Engineer</i><br/>
+				<b>Contact</b>: <a href="mailto:johlits@gmail.com">johlits@gmail.com</a>
+			</div>
+			<div class="item">
+				<h2>Links</h2>
+				<ul>
+				<li><b>LinkedIn profile</b> (<a href="https://www.linkedin.com/in/johan-litsfeldt-7a5ab8176/" target="_blank">Link</a>)<br/><i>Curriculum vitae</i></li>
+				<li><b>GitHub account</b> (<a href="https://github.com/johlits/" target="_blank">Link</a>)<br/><i>Interesting projects etc.</i></li>
+				</ul>
+			</div>
+			<div class="item">
+				<h2>Projects</h2>
+				<ul>
+				<li><b>PalPlanner</b> (<a href="https://www.palplanner.com/" target="_blank">Link</a>)<br/><i>Social media marketing platform</i></li>
+				<li><b>Eternal Dynastar Realm Online</b> (<a href="https://www.palz.one/edro" target="_blank">Link</a>, <a href="https://github.com/johlits/rpg" target="_blank">GitHub</a>)<br/><i>Multiplayer Online Role Playing Game</i></li>
+				</ul>
+			</div>
+		</div>
 	</div>
-	<div class="item">
-		<h2>Links</h2>
-		<ul>
-		<li><b>LinkedIn profile</b> (<a href="https://www.linkedin.com/in/johan-litsfeldt-7a5ab8176/" target="_blank">Link</a>)<br/><i>Curriculum vitae</i></li>
-		<li><b>GitHub account</b> (<a href="https://github.com/johlits/" target="_blank">Link</a>)<br/><i>Interesting projects etc.</i></li>
-		</ul>
-	</div>
-	<div class="item">
-		<h2>Projects</h2>
-		<ul>
-		<li><b>PalPlanner</b> (<a href="https://www.palplanner.com/" target="_blank">Link</a>)<br/><i>Social media marketing platform</i></li>
-		<li><b>Eternal Dynastar Realm Online</b> (<a href="https://www.palz.one/edro" target="_blank">Link</a>, <a href="https://github.com/johlits/rpg" target="_blank">GitHub</a>)<br/><i>Multiplayer Online Role Playing Game</i></li>
-		</ul>
-	</div>
-</div>
-
 </body>
 </html>
