@@ -71,7 +71,7 @@ h3 {
 }
 .nav-item a:hover,
 .nav-item a:focus {
-    border: 2px solid rgb(61, 146, 201);
+    border: 2px solid #fff;
     text-decoration: none;
 }
 
