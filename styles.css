@@ -109,7 +109,7 @@ h3 {
     line-height: 1.8em;
 }
 .post-meta {
-    color: #999;
+    font-style: italic;
     font-size: 90%;
     margin: 0;
 }
