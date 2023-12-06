@@ -50,6 +50,11 @@ h3 {
     color: rgb(176, 202, 219);
 }
 
+.tilt {
+    transform: rotate(-2deg) skew(-2deg);
+    transform-origin: bottom left;
+}
+
 .nav-list {
     margin: 0;
     padding: 0;
@@ -60,8 +65,6 @@ h3 {
     display: inline-block;
     *display: inline;
     zoom: 1;
-    transform: rotate(-2deg) skew(-2deg);
-    transform-origin: bottom left;
 }
 .nav-item a {
     background: transparent;
