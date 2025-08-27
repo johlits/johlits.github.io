@@ -182,6 +182,14 @@ a:focus {
   animation: drift2 36s linear infinite;
 }
 
+/* Extra fog depth */
+.fog-3 {
+  background: radial-gradient(60% 30% at 50% 105%, rgba(125, 53, 255, 0.06), transparent 70%),
+    radial-gradient(50% 25% at 90% 80%, rgba(108, 247, 0, 0.05), transparent 75%);
+  mix-blend-mode: screen;
+  animation: drift3 48s linear infinite;
+}
+
 @keyframes drift1 {
   from {
     transform: translateX(-2%);
@@ -202,12 +210,151 @@ a:focus {
   }
 }
 
+@keyframes drift3 {
+  from {
+    transform: translateY(1%);
+  }
+
+  to {
+    transform: translateY(-1%);
+  }
+}
+
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .fog {
     animation: none !important;
   }
+  .grain,
+  .lightning.flash,
+  .post::before,
+  .post-title .post-link:hover,
+  .post-title .post-link:focus,
+  .cursor-glow {
+    animation: none !important;
+  }
 }
+
+/* Lightning overlay */
+.lightning {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2; /* above content for dramatic flash */
+  background: radial-gradient(120% 80% at 50% 10%, rgba(255,255,255,0.0), rgba(255,255,255,0.0)),
+              radial-gradient(80% 40% at 20% 0%, rgba(164, 255, 238, 0.0), rgba(164, 255, 238, 0.0));
+  opacity: 0;
+}
+
+.lightning.flash {
+  animation: lightningFlash 0.9s ease-out;
+}
+
+@keyframes lightningFlash {
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  10% { opacity: 0.2; }
+  15% { opacity: 0.9; }
+  25% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Viewport cobwebs in outer corners */
+.cobwebs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0; /* below content (1), above fog (-1) */
+}
+.cobwebs .web {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  opacity: 0.12;
+  mix-blend-mode: screen;
+  background:
+    repeating-conic-gradient(from 0deg, rgba(255,255,255,0.15) 0 2deg, transparent 2deg 8deg),
+    repeating-radial-gradient(circle, rgba(255,255,255,0.12) 0 10px, transparent 10px 20px);
+}
+.cobwebs .web.tl { top: 0; left: 0; mask: radial-gradient(200px 200px at 0 0, #000 45%, transparent 46%); }
+.cobwebs .web.tr { top: 0; right: 0; mask: radial-gradient(200px 200px at 100% 0, #000 45%, transparent 46%); }
+.cobwebs .web.bl { bottom: 0; left: 0; mask: radial-gradient(200px 200px at 0 100%, #000 45%, transparent 46%); }
+.cobwebs .web.br { bottom: 0; right: 0; mask: radial-gradient(200px 200px at 100% 100%, #000 45%, transparent 46%); }
+
+/* Film grain overlay (subtle) */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0; /* above fog (-1), below content (1) */
+  opacity: 0.06;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 2px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 2px);
+  background-size: 200px 200px, 180px 180px;
+  animation: grainShift 2.2s steps(6) infinite;
+}
+
+@keyframes grainShift {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(-1%, 1%); }
+  40%  { transform: translate(1%, -0.5%); }
+  60%  { transform: translate(0.5%, 0.5%); }
+  80%  { transform: translate(-0.5%, -1%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Neon rune pulse on post frames */
+.post::before {
+  animation: neonPulse 4.5s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+  0%, 100% { opacity: 0.18; }
+  50% { opacity: 0.32; }
+}
+
+/* Pause pulse and brighten on hover for clarity */
+.post:hover::before {
+  animation-play-state: paused;
+  opacity: 0.35;
+}
+
+/* Portal hover effect on posts */
+.post {
+  transition: transform .25s ease, box-shadow .25s ease;
+  will-change: transform;
+}
+.post:hover {
+  transform: perspective(800px) translateZ(6px) scale(1.01);
+  box-shadow: 0 12px 26px -18px rgba(0,0,0,0.6), 0 0 24px -12px rgba(124,255,0,0.25);
+}
+.post:hover {
+  background: radial-gradient(160px 80px at 20% 10%, rgba(124,255,0,0.06), transparent 60%),
+              radial-gradient(140px 70px at 80% 20%, rgba(125,53,255,0.05), transparent 60%),
+              linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.0));
+}
+
+/* Spooky title flicker on hover/focus */
+.post-title .post-link:hover,
+.post-title .post-link:focus {
+  text-shadow:
+    0 0 8px rgba(108,247,0,0.35),
+    0 0 18px rgba(125,53,255,0.25);
+  animation: titleFlicker 0.9s ease-in-out infinite;
+}
+
+@keyframes titleFlicker {
+  0% { filter: brightness(1); transform: skewX(0deg); }
+  30% { filter: brightness(1.1); }
+  40% { filter: brightness(0.9); }
+  50% { filter: brightness(1.2); transform: skewX(-1deg); }
+  60% { filter: brightness(0.85); }
+  75% { filter: brightness(1.15); transform: skewX(1deg); }
+  100% { filter: brightness(1); transform: skewX(0deg); }
+}
+
+/* Removed bats and cursor glow styles */
 
 /* Bat doodads on hover for links */
 .post a.post-link {

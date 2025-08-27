@@ -20,6 +20,16 @@
     <!-- Ambient fog layers for witchy atmosphere -->
     <div class="fog fog-1"></div>
     <div class="fog fog-2"></div>
+    <div class="fog fog-3"></div>
+    <div class="lightning" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    
+    <div class="cobwebs" aria-hidden="true">
+      <span class="web tl"></span>
+      <span class="web tr"></span>
+      <span class="web bl"></span>
+      <span class="web br"></span>
+    </div>
 
     <div id="layout" class="layout">
         <div class="sidebar col-sidebar">
@@ -140,6 +150,28 @@
             }
         })();
     </script>
+
+    <script>
+        // Occasional lightning flashes (visual only). Respects reduced motion.
+        (function () {
+            var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var layer = document.querySelector('.lightning');
+            if (prefersReduced || !layer) return;
+
+            function queueFlash() {
+                var delay = 6000 + Math.random() * 10000; // 6-16s
+                setTimeout(function () {
+                    layer.classList.add('flash');
+                    // notify listeners that a flash happened
+                    try { window.dispatchEvent(new Event('lightning-flash')); } catch (_) {}
+                    setTimeout(function () { layer.classList.remove('flash'); queueFlash(); }, 900);
+                }, delay);
+            }
+            queueFlash();
+        })();
+    </script>
+
+    
 
 </body>
 
