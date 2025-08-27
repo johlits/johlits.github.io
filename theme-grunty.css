@@ -42,13 +42,23 @@ body,
 }
 
 .sidebar h1,
-.post-title,
 .brand-title,
 .nav-item h1 {
   font-family: "Creepster", system-ui, sans-serif;
   letter-spacing: 0.5px;
   color: var(--accent);
   text-shadow: 0 0 12px rgba(108, 247, 0, 0.35), 0 2px 0 #092400;
+}
+
+.post-title {
+  font-family: "Creepster", system-ui, sans-serif;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  text-shadow: 0 0 12px rgba(108, 247, 0, 0.35), 0 2px 0 #092400;
+}
+
+.sidebar .post-title {
+  font-size: 2.4em;
 }
 
 /* Links & buttons */
