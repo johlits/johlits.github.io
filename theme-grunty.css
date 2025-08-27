@@ -344,6 +344,16 @@ a:focus {
   animation: titleFlicker 0.9s ease-in-out infinite;
 }
 
+/* Remove border around header title link and override nav hover border */
+.sidebar .post-title .post-link {
+  border: 0 !important;
+  padding: 0;
+}
+.sidebar .post-title .post-link:hover,
+.sidebar .post-title .post-link:focus {
+  border: 0 !important;
+}
+
 @keyframes titleFlicker {
   0% { filter: brightness(1); transform: skewX(0deg); }
   30% { filter: brightness(1.1); }
