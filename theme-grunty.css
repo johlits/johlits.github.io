@@ -354,26 +354,14 @@ a:focus {
   100% { filter: brightness(1); transform: skewX(0deg); }
 }
 
-/* Removed bats and cursor glow styles */
-
-/* Bat doodads on hover for links */
+/* Remove bat doodad on post title links */
 .post a.post-link {
   position: relative;
 }
 
+/* Disable decorative pseudo-element that showed a bat to the left */
 .post a.post-link::after {
-  content: "🦇";
-  position: absolute;
-  left: -1.6em;
-  top: 0.05em;
-  opacity: 0;
-  transform: translateX(-6px) rotate(-8deg);
-  transition: opacity .2s ease, transform .2s ease;
-}
-
-.post a.post-link:hover::after {
-  opacity: 0.9;
-  transform: translateX(0) rotate(-4deg);
+  content: none !important;
 }
 
 /* Footer and small elements */
