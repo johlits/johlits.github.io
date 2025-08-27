@@ -32,6 +32,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="btn" href="https://github.com/johlits">GitHub</a>
+                            <a class="btn" href="#" id="laugh-btn" aria-label="Play Gruntilda laugh">Laugh</a>
                         </li>
                     </ul>
                 </nav>
@@ -119,7 +120,26 @@
 
     </div>
 
-    
+    <!-- Hidden audio element for Gruntilda laugh -->
+    <audio id="laugh-audio" src="./gruntilda-laugh.mp3" preload="auto" aria-hidden="true"></audio>
+
+    <script>
+        (function () {
+            var btn = document.getElementById('laugh-btn');
+            var audio = document.getElementById('laugh-audio');
+            if (btn && audio) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    try {
+                        audio.currentTime = 0;
+                        audio.play();
+                    } catch (err) {
+                        /* noop */
+                    }
+                });
+            }
+        })();
+    </script>
 
 </body>
 

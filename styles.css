@@ -112,6 +112,14 @@ h3 {
     font-size: 85%;
 }
 
+/* Two-button layout: side-by-side on small screens */
+.nav-item .btn {
+    margin-right: 0.5rem;
+}
+.nav-item .btn:last-child {
+    margin-right: 0;
+}
+
 .nav-item a:hover,
 .nav-item a:focus {
     border: 2px solid #fff;
@@ -254,6 +262,17 @@ h3 {
 
     .col-content {
         width: 75%;
+    }
+
+    /* On wide screens, stack the GitHub and Laugh buttons vertically and right-align */
+    .nav-item .btn {
+        display: block;
+        width: max-content;
+        margin-right: 0;
+        margin-left: auto; /* push to the right */
+    }
+    .nav-item .btn + .btn {
+        margin-top: 0.5rem;
     }
 
     .footer {
