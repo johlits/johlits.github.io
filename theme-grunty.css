@@ -1,0 +1,251 @@
+/* Gruntilda-inspired theme overrides */
+/* Palette & tokens */
+:root {
+  --bg-0: #0b0a10;
+  /* near-black */
+  --bg-1: #141220;
+  /* deep purple-black */
+  --bg-2: #1b1630;
+  /* dungeon purple */
+  --ink-0: #e6e6f0;
+  /* light text */
+  --ink-1: #bfbcd9;
+  /* muted text */
+  --accent: #6cf700;
+  /* toxic green */
+  --accent-2: #7d35ff;
+  /* witchy purple */
+  --accent-3: #00ff9a;
+  /* spectral mint */
+  --border: #3cff00;
+  /* neon edge */
+  --shadow: rgba(0, 0, 0, 0.6);
+}
+
+html,
+body {
+  background: radial-gradient(1200px 600px at 70% -10%, rgba(108, 247, 0, 0.12), transparent 60%),
+    radial-gradient(900px 500px at 10% -5%, rgba(125, 53, 255, 0.14), transparent 60%),
+    linear-gradient(180deg, var(--bg-2), var(--bg-0));
+  color: var(--ink-0);
+}
+
+body {
+  position: relative;
+}
+
+/* Typography */
+body,
+.post-description {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: var(--ink-0);
+}
+
+.sidebar h1,
+.post-title,
+.brand-title,
+.nav-item h1 {
+  font-family: "Creepster", system-ui, sans-serif;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  text-shadow: 0 0 12px rgba(108, 247, 0, 0.35), 0 2px 0 #092400;
+}
+
+/* Links & buttons */
+a,
+.post a,
+.nav-item a.btn {
+  color: var(--accent);
+}
+
+a:hover,
+a:focus {
+  color: var(--accent-3);
+  text-decoration: none;
+}
+
+.nav-item a.btn {
+  border: 2px solid var(--border);
+  color: #0b1600;
+  background: linear-gradient(180deg, rgba(108, 247, 0, 0.9), rgba(60, 255, 0, 0.9));
+  box-shadow: 0 0 0 0 rgba(108, 247, 0, 0.6), 0 6px 18px -6px rgba(108, 247, 0, 0.45);
+  transition: transform .15s ease, box-shadow .3s ease, filter .2s ease;
+}
+
+.nav-item a.btn:hover,
+.nav-item a.btn:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px 2px rgba(108, 247, 0, 0.45), 0 14px 22px -10px rgba(108, 247, 0, 0.5);
+  filter: saturate(1.15);
+}
+
+/* Sidebar */
+.sidebar {
+  background: transparent;
+  border-right: none;
+  z-index: 1; /* above fog */
+}
+
+.header {
+  margin: 3em auto;
+}
+
+/* Content area */
+.content {
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.2) 120%);
+  position: relative;
+  z-index: 1;
+  /* above fog */
+}
+
+/* Subtitle utility (used for small tagline under title) */
+.subtitle {
+  margin: 0;
+  font-style: italic;
+  color: var(--ink-1);
+}
+
+/* Posts as stone slabs with neon rune edges */
+.post {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.0));
+  border-radius: 14px;
+  padding: 1em;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(60, 255, 0, 0.18);
+}
+
+.post::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 2px;
+  /* creates an inner neon frame */
+  background: linear-gradient(45deg, rgba(60, 255, 0, 0.9), rgba(125, 53, 255, 0.9)) border-box;
+  opacity: 0.18;
+}
+
+.post:hover::before {
+  opacity: 0.35;
+}
+
+.post-header {
+  transform: none;
+}
+
+.post-title {
+  color: var(--accent);
+  margin-bottom: 0.1em;
+}
+
+.post-meta {
+  color: var(--ink-1);
+}
+
+.post-description {
+  color: var(--ink-0);
+}
+
+/* Tilt accents on headings */
+.tilt {
+  transform: rotate(-2deg) skew(-1deg);
+}
+
+/* Fog layers */
+.fog {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  /* behind layout */
+  opacity: 0.25;
+}
+
+.fog-1 {
+  background: radial-gradient(60% 25% at 50% -5%, rgba(124, 255, 0, 0.08), transparent 70%),
+    radial-gradient(40% 20% at 10% 10%, rgba(125, 53, 255, 0.08), transparent 70%);
+  animation: drift1 24s linear infinite;
+}
+
+.fog-2 {
+  background: radial-gradient(50% 25% at 80% 0%, rgba(108, 247, 0, 0.06), transparent 70%),
+    radial-gradient(40% 20% at 20% 5%, rgba(0, 255, 154, 0.06), transparent 70%);
+  mix-blend-mode: screen;
+  animation: drift2 36s linear infinite;
+}
+
+@keyframes drift1 {
+  from {
+    transform: translateX(-2%);
+  }
+
+  to {
+    transform: translateX(2%);
+  }
+}
+
+@keyframes drift2 {
+  from {
+    transform: translateX(2%);
+  }
+
+  to {
+    transform: translateX(-2%);
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .fog {
+    animation: none !important;
+  }
+}
+
+/* Bat doodads on hover for links */
+.post a.post-link {
+  position: relative;
+}
+
+.post a.post-link::after {
+  content: "🦇";
+  position: absolute;
+  left: -1.6em;
+  top: 0.05em;
+  opacity: 0;
+  transform: translateX(-6px) rotate(-8deg);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.post a.post-link:hover::after {
+  opacity: 0.9;
+  transform: translateX(0) rotate(-4deg);
+}
+
+/* Footer and small elements */
+.footer a {
+  color: var(--ink-1);
+}
+
+.content-subhead {
+  color: var(--ink-1);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Responsive fixes */
+@media (min-width: 48em) {
+  .header {
+    margin: 35% 2em 0;
+  }
+
+  .sidebar {
+    box-shadow: none;
+  }
+}
