@@ -1,175 +1,170 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of johlits — projects, tools, and experiments.">
-    <title>j-portfolio</title>
-    
-    <link rel="stylesheet" href="./styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./theme-grunty.css">
-    
-    <!-- Favicons -->
-    <link rel="icon" href="/icons/grunty.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon32.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="/icons/icon48.png">
-    <link rel="icon" type="image/png" sizes="128x128" href="/icons/icon128.png">
-    <link rel="icon" type="image/png" sizes="256x256" href="/icons/icon256.png">
-    
-    <!-- iOS Home Screen icons (Apple Touch Icons). iOS will scale if exact 180x180 is not provided. -->
-    <link rel="apple-touch-icon" href="/icons/icon192.png">
-    <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon192.png">
-    <link rel="apple-touch-icon" sizes="256x256" href="/icons/icon256.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon512.png">
-    <link rel="apple-touch-icon-precomposed" href="/icons/icon192.png">
-    
+    <title>johlits.github.io</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: black;
+            overflow: hidden;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        #unmute-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 16px;
+            font-size: 14px;
+            color: white;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        #unmute-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        #unmute-btn.hidden {
+            display: none;
+        }
+        .overlay {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            padding: 16px 24px;
+            font-family: "Comic Sans MS", "Chalkboard SE", cursive;
+            font-size: 22px;
+            line-height: 1.6;
+            z-index: 5;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        .overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .overlay table {
+            border-collapse: collapse;
+        }
+        .overlay td {
+            padding: 2px 14px;
+            text-align: center;
+        }
+        .overlay td:first-child {
+            text-align: left;
+            padding-left: 0;
+        }
+        .overlay.visible {
+            display: block;
+        }
+        #sunrise-overlay {
+            bottom: 60px;
+        }
+        #sunset-overlay {
+            top: 20px;
+        }
+    </style>
 </head>
-
 <body>
-
-    <!-- Ambient fog layers for witchy atmosphere -->
-    <div class="fog fog-1"></div>
-    <div class="fog fog-2"></div>
-    <div class="fog fog-3"></div>
-    <div class="lightning" aria-hidden="true"></div>
-    <div class="grain" aria-hidden="true"></div>
-    
-    <div class="cobwebs" aria-hidden="true">
-      <span class="web tl"></span>
-      <span class="web tr"></span>
-      <span class="web bl"></span>
-      <span class="web br"></span>
-    </div>
-
-    <div id="layout" class="layout">
-        <div class="sidebar col-sidebar">
-            <div class="header">
-                <nav class="nav">
-                    <ul class="nav-list">
-                        <li class="nav-item tilt">
-                            <h1 class="post-title"><a class="post-link" href="https://johlits.github.io/">johlits</a></h1>
-                            <p class="subtitle">Portfolio</p>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn" href="https://github.com/johlits">GitHub</a>
-                            <a class="btn" href="#" id="laugh-btn" aria-label="Play Gruntilda laugh">Laugh</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-
-        <div class="content col-content">
-            <div>
-                <div class="posts">
-                    <section class="post" id="bitsports">
-                        <header class="post-header">
-                            <h2 class="post-title">
-                                <a class="post-link" href="/#bitsports">BitSports</a>
-                            </h2>
-                            <p class="post-meta">
-                                Air Hockey Game with LLM-Implemented AIs
-                            </p>
-                        </header>
-                        <div class="post-description">
-                            <p>
-                                An air hockey game where LLM-implemented AIs can play against each other or a human.<br /><br />
-                                Game & Watch: <a href="https://johlits.com/games/bitsports">Bitsports</a><br />
-                                Source: <a href="https://github.com/johlits/bitsports">GitHub</a><br />
-                            </p>
-                        </div>
-                    </section>
-                    <section class="post" id="games">
-                        <header class="post-header">
-                            <h2 class="post-title">
-                                <a class="post-link" href="/#games">Games</a>
-                            </h2>
-                            <p class="post-meta">
-                                Web-based Games and Experiments
-                            </p>
-                        </header>
-                        <div class="post-description">
-                            <p>
-                                A collection of web-based games built with HTML5, CSS3, and JavaScript.<br /><br />
-                                <a href="https://www.johlits.com/games/paperplane/">Paper Plane</a> - A game in which you steer a paperplane through an increasingly difficult level.<br />
-                                <a href="https://www.johlits.com/games/penguin/">Penguin Slide</a> - A puzzle game where you control a penguin to its hole in the ice.<br />
-                                <a href="https://www.johlits.com/games/snowboard/">Snowboard</a> - A 3d snowboarding game which has a speedrun mode, a trick mode and a free mode.<br />
-                            </p>
-                        </div>
-                    </section>
-                    <section class="post" id="palstory">
-                        <header class="post-header">
-                            <h2 class="post-title">
-                                <a class="post-link" href="/#palstory">PalStory</a>
-                            </h2>
-                            <p class="post-meta">
-                                Web based Multiplayer Online RPG
-                            </p>
-                        </header>
-                        <div class="post-description">
-                            <p>
-                                No registration required — press the <b>Demo</b> button for quick play. <br /><br />
-                                Play: <a href="https://www.palplanner.com/story/game/">PalStory</a><br />
-                                Source: <a href="https://github.com/johlits/palstory">GitHub</a><br />
-                                Docker image: <a href="https://hub.docker.com/repository/docker/johlits/palstory-web">Docker
-                                    Hub</a><br />
-                            </p>
-                        </div>
-                    </section>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Hidden audio element for Gruntilda laugh -->
-    <audio id="laugh-audio" src="./gruntilda-laugh.mp3" preload="auto" aria-hidden="true"></audio>
-
+    <video id="video" src="sun.mp4" autoplay loop muted playsinline></video>
+    <button id="unmute-btn">Unmute</button>
+    <div id="sunrise-overlay" class="overlay"></div>
+    <div id="sunset-overlay" class="overlay"></div>
     <script>
-        (function () {
-            var btn = document.getElementById('laugh-btn');
-            var audio = document.getElementById('laugh-audio');
-            if (btn && audio) {
-                btn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    try {
-                        audio.currentTime = 0;
-                        audio.play();
-                    } catch (err) {
-                        /* noop */
-                    }
-                });
+        const video = document.getElementById('video');
+        const btn = document.getElementById('unmute-btn');
+        const sunriseOverlay = document.getElementById('sunrise-overlay');
+        const sunsetOverlay = document.getElementById('sunset-overlay');
+
+        btn.addEventListener('click', () => {
+            video.muted = false;
+            btn.classList.add('hidden');
+        });
+
+        video.addEventListener('timeupdate', () => {
+            const t = video.currentTime;
+            sunriseOverlay.classList.toggle('visible', t >= 10 && t <= 30);
+            sunsetOverlay.classList.toggle('visible', t >= 33 && t <= 49);
+        });
+
+        const cities = [
+            { name: 'Lund', lat: 55.71, lon: 13.19 },
+            { name: 'Sthlm', lat: 59.33, lon: 18.07 },
+            { name: 'Lycksele', lat: 64.60, lon: 18.67 },
+            { name: 'Kiruna', lat: 67.86, lon: 20.23 }
+        ];
+
+        function extractTime(iso) {
+            if (!iso) return null;
+            return iso.split('T')[1].substring(0, 5).replace(':', '.');
+        }
+
+        function diffMinutes(todayIso, lastWeekIso) {
+            if (!todayIso || !lastWeekIso) return null;
+            const today = new Date(todayIso);
+            const lastWeek = new Date(lastWeekIso);
+            const todayMin = today.getHours() * 60 + today.getMinutes();
+            const lastWeekMin = lastWeek.getHours() * 60 + lastWeek.getMinutes();
+            const diff = todayMin - lastWeekMin;
+            return diff === 0 ? '-' : (diff > 0 ? '+' + diff : diff.toString());
+        }
+
+        function buildTable(rows) {
+            let html = '<table>';
+            for (const row of rows) {
+                html += '<tr>' + row.map(c => '<td>' + c + '</td>').join('') + '</tr>';
             }
-        })();
+            html += '</table>';
+            return html;
+        }
+
+        async function fetchSunData() {
+            const results = await Promise.all(cities.map(async city => {
+                const url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&daily=sunrise,sunset&timezone=Europe%2FStockholm&past_days=7`;
+                const res = await fetch(url);
+                const data = await res.json();
+                return {
+                    name: city.name,
+                    todaySunrise: data.daily.sunrise[7],
+                    todaySunset: data.daily.sunset[7],
+                    lastWeekSunrise: data.daily.sunrise[0],
+                    lastWeekSunset: data.daily.sunset[0]
+                };
+            }));
+
+            const headers = [''].concat(cities.map(c => c.name));
+            const sunriseToday = ['Idag'].concat(results.map(r => extractTime(r.todaySunrise) ?? 'o h'));
+            const sunriseLast = ['Förra veckan'].concat(results.map(r => extractTime(r.lastWeekSunrise) ?? 'o h'));
+            const sunriseDiff = ['Tidsskillnad'].concat(results.map(r => diffMinutes(r.todaySunrise, r.lastWeekSunrise) ?? '-'));
+            sunriseOverlay.innerHTML = buildTable([headers, sunriseToday, sunriseLast, sunriseDiff]);
+
+            const sunsetToday = ['Idag'].concat(results.map(r => extractTime(r.todaySunset) ?? 'o h'));
+            const sunsetLast = ['Förra veckan'].concat(results.map(r => extractTime(r.lastWeekSunset) ?? 'o h'));
+            const sunsetDiff = ['Tidsskillnad'].concat(results.map(r => diffMinutes(r.todaySunset, r.lastWeekSunset) ?? '-'));
+            sunsetOverlay.innerHTML = buildTable([headers, sunsetToday, sunsetLast, sunsetDiff]);
+        }
+
+        fetchSunData().catch(err => {
+            console.error('Weather API failed:', err);
+            sunriseOverlay.textContent = 'Kunde inte ladda soluppgångsdata';
+            sunsetOverlay.textContent = 'Kunde inte ladda solnedgångsdata';
+        });
     </script>
-
-    <script>
-        // Occasional lightning flashes (visual only). Respects reduced motion.
-        (function () {
-            var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            var layer = document.querySelector('.lightning');
-            if (prefersReduced || !layer) return;
-
-            function queueFlash() {
-                var delay = 6000 + Math.random() * 10000; // 6-16s
-                setTimeout(function () {
-                    layer.classList.add('flash');
-                    // notify listeners that a flash happened
-                    try { window.dispatchEvent(new Event('lightning-flash')); } catch (_) {}
-                    setTimeout(function () { layer.classList.remove('flash'); queueFlash(); }, 900);
-                }, delay);
-            }
-            queueFlash();
-        })();
-    </script>
-
-    
-
 </body>
-
 </html>
